@@ -1,0 +1,6 @@
+package com.example.sicChatApp.Configuration;
+
+public class JwtConstant {
+    public static final String JWT_HEADER = "Authorization";
+    public static final String SECRET_KEY = "chchchchcharafafafafafafaf,dhfhhgyhjggjjg" ;
+}
