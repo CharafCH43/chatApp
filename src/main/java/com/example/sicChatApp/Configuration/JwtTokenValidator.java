@@ -41,9 +41,12 @@ public class JwtTokenValidator extends OncePerRequestFilter {
                         .getBody();
 
                 // Extract username and authorities
-                String username = claims.getSubject(); // Typically the username or email
-                String authorities = (String) claims.get("authorities");
+                String username = String.valueOf(claims.get("username")); // Typically the username or email
+                String authorities = String.valueOf(claims.get("authorities")); // Retrieve as List
+                System.out.println("display-<-<<<<<<<<"+username+","+authorities);
 
+
+                // Convert to GrantedAuthority list
                 List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 
                 // Create authentication object

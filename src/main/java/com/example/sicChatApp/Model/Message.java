@@ -21,12 +21,15 @@ public class Message {
     private Integer id;
     private String content;
     private LocalDateTime timestamp ;
+    private boolean isRead ;
 
     @ManyToOne
     private User user;
     @ManyToOne
     @JoinColumn(name = "chat_id")
     private Chat chat;
+
+
 
 
 }

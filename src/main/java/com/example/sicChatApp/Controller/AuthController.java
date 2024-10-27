@@ -37,7 +37,6 @@ public class AuthController {
         String email = user.getEmail();
         String username = user.getUsername();
         String password = user.getPassword();
-
         User isUser = userRepository.findByEmail(email);
         if(isUser != null) {
             throw new UserException("Email "+email+" already used for another account");

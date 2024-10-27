@@ -11,7 +11,6 @@ import com.example.sicChatApp.Request.SendMessageRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.print.attribute.standard.MediaSize;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +25,13 @@ public class MessageServiceImplementation implements MessageService{
     public Message sendMessage(SendMessageRequest req) throws UserException, ChatException {
         User user = userService.findUserById(req.getUserId());
         Chat chat = chatService.findChatById(req.getChatId());
-
         Message message = new Message();
+        message.setRead(false);
         message.setChat(chat);
         message.setUser(user);
         message.setContent(req.getContent());
         message.setTimestamp(LocalDateTime.now());
+        messageRepository.save(message);
         return message ;
     }
 
@@ -67,4 +67,7 @@ public class MessageServiceImplementation implements MessageService{
         }
         throw new UserException("you can not delete another user's message "+reqUser.getUsername());
     }
+    // New method to mark a message as read
+
+
 }
